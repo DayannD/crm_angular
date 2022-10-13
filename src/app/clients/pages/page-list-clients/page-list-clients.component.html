@@ -1,0 +1,30 @@
+<app-template-full-width>
+  <!--<app-table-light [headers]="headers" *ngIf="collection"> -->
+  <app-table-light [headers]="headers" *ngIf="collection$ | async as collection">
+    <!-- {{ collection | json}} -->
+    <tr *ngFor="let item of collection">
+      <td>{{ item.companyName }}</td>
+      <td>{{ item.firstName }}</td>
+      <td>{{ item.lastName }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.telephone }}</td>
+      <td>{{ item.address }}</td>
+      <td>{{ item.zipCode }}</td>
+      <td>{{ item.city }}</td>
+      <td>{{ item.country }}</td>
+      <td>{{ item.id }}</td>
+      <td [appState]="item.state">
+        <select (change)="changeState(item, $event)">
+          <option *ngFor="let state of states" [value]="state" [selected]=" state === item.state">
+            {{ state }}
+          </option>
+        </select>
+      </td>
+      <td><button class="btn btn-info"><a [routerLink]="['/clients/',item.id]">edit</a></button></td>
+      <td><button class="btn-danger" (click)="remove(item.id)">edit</button></td>
+    </tr>
+  </app-table-light>
+
+  <app-btn [nom]="add" [urlToGo]="urlAdd"></app-btn>
+  <app-btn [nom]="edit" [urlToGo]="urlEdit"></app-btn>
+</app-template-full-width>

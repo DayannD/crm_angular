@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="typePresta">type</label>
+    <input type="text" class="form-control" id="typePresta" [value]="init.typePresta" formControlName="typePresta">
+  </div>
+
+  <div class="form-group">
+    <label for="designation">designation</label>
+    <input type="text" class="form-control" id="designation" [value]="init.designation" formControlName="designation">
+  </div>
+
+  <div class="form-group">
+    <label for="nbDays">nb Jours</label>
+    <input type="number" class="form-control" id="nbDays" [value]="init.nbDays" formControlName="nbDays">
+  </div>
+
+  <div class="form-group">
+    <label for="unitPrice">Unit price</label>
+    <input type="number" class="form-control" id="unitPrice" [value]="init.unitPrice" formControlName="unitPrice">
+  </div>
+
+  <div class="form-group">
+    <label for="state">state</label>
+    <select class="form-control" id="state" formControlName="state">
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+  </div>
+
+  <div class="form-group" *ngIf="collection$ | async as collection">
+    <label for="state">Client</label>
+    <select class="form-control" id="orderClient_id" formControlName="orderClient_id">
+      <option *ngFor="let client of collection" [value]="client.id"  >{{ client.id }}</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

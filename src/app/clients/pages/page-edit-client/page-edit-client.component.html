@@ -1,0 +1,4 @@
+<app-template-full-width  *ngIf="item$ | async as item">
+   <app-form-client  [init]="item" (submitted)="action($event)" ></app-form-client>
+</app-template-full-width>
+
